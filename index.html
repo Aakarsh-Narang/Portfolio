@@ -134,7 +134,7 @@
     width: 7px; height: 7px; border-radius: 50%;
     background: #00F5FF; box-shadow: 0 0 14px #00F5FF, 0 0 28px rgba(0,245,255,0.5);
   }
-  .loader-status { font-size: 0.62rem; color: rgba(108,99,255,0.45); letter-spacing: 0.1em; height: 15px; }
+  .loader-status { font-size: 0.85rem; color: rgba(108,99,255,0.45); letter-spacing: 0.1em; height: 20px; }
 
   /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 3px; }
@@ -217,11 +217,7 @@
     display: block;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    
-    /* 1. Creates the thin outline around the entire word */
     -webkit-text-stroke: 1.5px var(--accent); 
-    
-    /* 2. Fills the top 76% with solid color, leaves the bottom 24% transparent to reveal the stroke */
     background: linear-gradient(to bottom, var(--accent) 96%, transparent 76%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -288,16 +284,9 @@
   /* ══════════════════════════════
      SCROLL ANIMATIONS
   ══════════════════════════════ */
-
-  /* Base reveal */
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-
-  /* Glitch text reveal for section titles */
-  .glitch-reveal {
-    opacity: 0; position: relative;
-    transition: opacity 0.01s;
-  }
+  .glitch-reveal { opacity: 0; position: relative; transition: opacity 0.01s; }
   .glitch-reveal.visible { opacity: 1; animation: glitchIn 0.7s var(--ease) forwards; }
   @keyframes glitchIn {
     0%   { clip-path: inset(40% 0 40% 0); transform: translateX(-6px); opacity: 0.4; }
@@ -309,77 +298,41 @@
     100% { clip-path: inset(0 0 0 0); transform: translateX(0); opacity: 1; }
   }
 
-  /* Circuit line SVG drawn on scroll */
-  .circuit-wrap {
-    position: relative; overflow: visible;
-  }
-  .circuit-svg {
-    position: absolute; top: 0; left: -60px;
-    width: 40px; height: 100%;
-    overflow: visible; pointer-events: none;
-  }
-  .circuit-path {
-    fill: none; stroke: var(--accent); stroke-width: 1;
-    stroke-dasharray: 600; stroke-dashoffset: 600;
-    opacity: 0.35;
-    transition: stroke-dashoffset 1.2s var(--ease), opacity 0.4s;
-  }
+  .circuit-wrap { position: relative; overflow: visible; }
+  .circuit-svg { position: absolute; top: 0; left: -60px; width: 40px; height: 100%; overflow: visible; pointer-events: none; }
+  .circuit-path { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 600; stroke-dashoffset: 600; opacity: 0.35; transition: stroke-dashoffset 1.2s var(--ease), opacity 0.4s; }
   .circuit-wrap.visible .circuit-path { stroke-dashoffset: 0; opacity: 0.35; }
-  .circuit-dot {
-    fill: var(--accent); opacity: 0;
-    transition: opacity 0.3s 0.9s;
-  }
+  .circuit-dot { fill: var(--accent); opacity: 0; transition: opacity 0.3s 0.9s; }
   .circuit-wrap.visible .circuit-dot { opacity: 0.6; }
 
-  /* Scan line on cards */
-  .scan-card {
-    position: relative; overflow: hidden;
-  }
-  .scan-card::after {
-    content: ''; position: absolute; left: 0; top: -100%;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity: 0; pointer-events: none;
-    transition: none;
-  }
-  .scan-card.scan-active::after {
-    animation: scanLine 0.8s var(--ease) forwards;
-  }
-  @keyframes scanLine {
-    0% { top: -2px; opacity: 0.8; }
-    100% { top: 100%; opacity: 0; }
-  }
+  .scan-card { position: relative; overflow: hidden; }
+  .scan-card::after { content: ''; position: absolute; left: 0; top: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0; pointer-events: none; transition: none; }
+  .scan-card.scan-active::after { animation: scanLine 0.8s var(--ease) forwards; }
+  @keyframes scanLine { 0% { top: -2px; opacity: 0.8; } 100% { top: 100%; opacity: 0; } }
 
-  /* Stat counter */
   .stat-counter { font-variant-numeric: tabular-nums; }
-
-  /* Fade slide variants */
   .reveal-left  { opacity: 0; transform: translateX(-50px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal-right { opacity: 0; transform: translateX(50px);  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
   .reveal-scale { opacity: 0; transform: scale(0.88); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
   .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
-  /* Stagger delay helpers */
   .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.18s; }
   .d3 { transition-delay: 0.26s; } .d4 { transition-delay: 0.34s; }
   .d5 { transition-delay: 0.42s; } .d6 { transition-delay: 0.5s; }
 
-  /* Horizontal rule trace */
-  .trace-line {
-    width: 0%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent);
-    opacity: 0.3; transition: width 1.4s var(--ease); margin-bottom: 60px;
-  }
+  .trace-line { width: 0%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0.3; transition: width 1.4s var(--ease); margin-bottom: 60px; }
   .trace-line.visible { width: 100%; }
 
   /* ─── TECH STACK ─── */
   #tech { background: transparent; }
-  .tech-grid { display: flex; flex-wrap: wrap; gap: 12px; max-width: 1100px; }
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 12px; max-width: 100%; width: 100%; }
   .tech-pill {
-    display: flex; align-items: center; gap: 9px;
-    padding: 10px 18px; background: var(--bg-card2);
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 20px; 
+    background: var(--bg-card2);
     border: 1px solid var(--border); border-radius: 100px;
-    font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem;
+    font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; 
     font-weight: 500; color: var(--text); cursor: none;
     transition: transform 0.3s var(--ease), border-color 0.3s, box-shadow 0.3s, color 0.3s;
     position: relative; overflow: hidden;
@@ -391,8 +344,8 @@
   }
   .tech-pill:hover { transform: translateY(-3px) scale(1.04); border-color: var(--pill-color, var(--accent)); box-shadow: 0 8px 30px var(--pill-shadow, rgba(108,99,255,0.25)); color: #fff; z-index: 1; }
   .tech-pill:hover::before { opacity: 1; }
-  .tech-pill img { width: 18px; height: 18px; object-fit: contain; filter: brightness(0.85); transition: filter 0.3s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
-  .tech-pill:hover img { filter: brightness(1.3); transform: scale(1.5) rotate(5deg); }
+  .tech-pill img { width: 24px; height: 24px; object-fit: contain; filter: brightness(0.85); transition: filter 0.3s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .tech-pill:hover img { filter: brightness(1.3); transform: scale(1.3) rotate(5deg); }
 
   /* ─── ABOUT ─── */
   #about { background: linear-gradient(180deg, transparent 0%, var(--bg-card) 100%); }
@@ -737,7 +690,7 @@
   }, 40);
 
   function tick() {
-    p += 0.8 + Math.random() * 1.5; // Steady increment
+    p += 0.8 + Math.random() * 1.5; 
     if (p >= 100) p = 100;
     
     if (fill) fill.style.width = p + '%';
@@ -750,7 +703,7 @@
     }
     
     if (p < 100) {
-      setTimeout(tick, 60); // Roughly 5-6s total
+      setTimeout(tick, 60); 
     } else {
       clearInterval(clk);
       setTimeout(() => {
@@ -792,28 +745,25 @@
       const dy = y - lastY;
       const dist = Math.hypot(dx, dy);
 
-      // Spawn thousands of microscopic dots per movement
       const steps = Math.min(Math.ceil(dist / 1.5), 100); 
 
       for (let i = 0; i < steps; i++) {
-        for (let j = 0; j < 4; j++) { // Density multiplier
+        for (let j = 0; j < 4; j++) { 
           const t = i / steps;
           const px = lastX + dx * t;
           const py = lastY + dy * t;
 
-          // The "Tear" spread - perpendicular scatter
           const angle = Math.atan2(dy, dx) + (Math.PI / 2) * (Math.random() > 0.5 ? 1 : -1);
           const spread = Math.random() * (speed > 15 ? 25 : 8);
 
           particles.push({
             x: px + Math.cos(angle) * spread,
             y: py + Math.sin(angle) * spread,
-            // Add initial kinetic drift
             vx: (Math.random() - 0.5) * 1.8,
             vy: (Math.random() - 0.5) * 1.8,
             life: 1,
-            decay: Math.random() * 0.02 + 0.005, // Fast fade-out when mouse stops
-            size: Math.random() * 1.2 + 0.3, // Tiny, dust-like
+            decay: Math.random() * 0.02 + 0.005, 
+            size: Math.random() * 1.2 + 0.3, 
             colorHue: hue + (Math.random() - 0.5) * 40
           });
         }
@@ -823,7 +773,29 @@
     lastY = y;
   });
 
-  // Track global cursor speed for spread calculation
+  // EXPLOSION ON CLICK EVENT
+  document.addEventListener('mousedown', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    const burstParticles = 120; // Number of particles for the burst
+
+    for (let i = 0; i < burstParticles; i++) {
+      const angle = Math.random() * Math.PI * 2; // Full 360 spread
+      const velocity = Math.random() * 8 + 1; // High speed scatter
+
+      particles.push({
+        x: x,
+        y: y,
+        vx: Math.cos(angle) * velocity,
+        vy: Math.sin(angle) * velocity,
+        life: 1,
+        decay: Math.random() * 0.015 + 0.005, // Faster fade
+        size: Math.random() * 2 + 0.5, // Slightly larger particles
+        colorHue: hue + (Math.random() - 0.5) * 60
+      });
+    }
+  });
+
   let speed = 0;
   let pxLast = -999, pyLast = -999;
   setInterval(() => {
@@ -834,7 +806,6 @@
     pyLast = lastY;
   }, 50);
 
-  // Reset lastX/Y if mouse stops so the line doesn't connect randomly next move
   let idleTimer;
   document.addEventListener('mousemove', () => {
     clearTimeout(idleTimer);
@@ -846,24 +817,22 @@
 
   function animateTear() {
     ctx.clearRect(0, 0, width, height);
-    ctx.globalCompositeOperation = 'lighter'; // Intense Sci-Fi Glow
+    ctx.globalCompositeOperation = 'lighter'; 
 
-    hue += 0.4; // Slowly cycle the gradient
+    hue += 0.4; 
 
     for (let i = particles.length - 1; i >= 0; i--) {
       const p = particles[i];
 
-      // Add a slight fluid swirl using sine waves based on position
       p.vx += Math.sin(p.y * 0.02) * 0.05;
       p.vy += Math.cos(p.x * 0.02) * 0.05;
 
       p.x += p.vx;
       p.y += p.vy;
-      p.vx *= 0.94; // Friction
+      p.vx *= 0.94; 
       p.vy *= 0.94;
       p.life -= p.decay;
 
-      // Disappear when life is over (naturally fades when mouse stops)
       if (p.life <= 0) {
         particles.splice(i, 1);
         continue;
@@ -914,43 +883,68 @@
    TECH STACK (Centered Glow Overlay)
 ═══════════════════════════════════════════════════ */
 const TECHS = [
-  { name:'C++',        icon:'https://cdn.simpleicons.org/cplusplus/00599C',   bg:'#040D14', color:'#1A88D4', shadow:'rgba(0,89,156,0.5)' },
-  { name:'Python',     icon:'https://cdn.simpleicons.org/python/3776AB',      bg:'#060A14', color:'#4B9CD3', shadow:'rgba(55,118,171,0.5)' },
-  { name:'JavaScript', icon:'https://cdn.simpleicons.org/javascript/F7DF1E',  bg:'#141200', color:'#F7DF1E', shadow:'rgba(247,223,30,0.4)' },
-  { name:'TypeScript', icon:'https://cdn.simpleicons.org/typescript/3178C6',  bg:'#050B14', color:'#3D8EE8', shadow:'rgba(49,120,198,0.5)' },
-  { name:'Java',       icon:'https://cdn.simpleicons.org/openjdk/ED8B00',     bg:'#140900', color:'#F0A020', shadow:'rgba(237,139,0,0.5)' },
-  { name:'Go',         icon:'https://cdn.simpleicons.org/go/00ADD8',          bg:'#00090E', color:'#00C8F0', shadow:'rgba(0,173,216,0.5)' },
-  { name:'C#',         icon:'https://cdn.simpleicons.org/csharp/239120',      bg:'#041008', color:'#2EBD2A', shadow:'rgba(35,145,32,0.5)' },
-  { name:'React',      icon:'https://cdn.simpleicons.org/react/61DAFB',       bg:'#001418', color:'#61DAFB', shadow:'rgba(97,218,251,0.4)' },
-  { name:'Next.js',    icon:'https://cdn.simpleicons.org/nextdotjs/FFFFFF',   bg:'#0E0E0E', color:'#CCCCCC', shadow:'rgba(200,200,200,0.25)' },
-  { name:'Node.js',    icon:'https://cdn.simpleicons.org/nodedotjs/339933',   bg:'#031003', color:'#44BB44', shadow:'rgba(51,153,51,0.5)' },
-  { name:'Django',     icon:'https://cdn.simpleicons.org/django/44B78B',      bg:'#021009', color:'#44B78B', shadow:'rgba(43,169,119,0.5)' },
-  { name:'FastAPI',    icon:'https://cdn.simpleicons.org/fastapi/009688',      bg:'#001210', color:'#00BFB0', shadow:'rgba(0,150,136,0.5)' },
-  { name:'Spring Boot',icon:'https://cdn.simpleicons.org/springboot/6DB33F',  bg:'#061000', color:'#7DCF4A', shadow:'rgba(109,179,63,0.5)' },
-  { name:'Flask',      icon:'https://cdn.simpleicons.org/flask/FFFFFF',       bg:'#0D0D0D', color:'#AAAAAA', shadow:'rgba(180,180,180,0.2)' },
-  { name:'PyTorch',    icon:'https://cdn.simpleicons.org/pytorch/EE4C2C',     bg:'#150400', color:'#FF5533', shadow:'rgba(238,76,44,0.5)' },
-  { name:'TensorFlow', icon:'https://cdn.simpleicons.org/tensorflow/FF6F00',  bg:'#140700', color:'#FF9900', shadow:'rgba(255,111,0,0.5)' },
-  { name:'scikit-learn',icon:'https://cdn.simpleicons.org/scikitlearn/F7931E',bg:'#130800', color:'#F7931E', shadow:'rgba(247,147,30,0.5)' },
-  { name:'OpenCV',     icon:'https://cdn.simpleicons.org/opencv/5C3EE8',      bg:'#080414', color:'#7055FF', shadow:'rgba(92,62,232,0.5)' },
-  { name:'HuggingFace',icon:'https://cdn.simpleicons.org/huggingface/FFD21E', bg:'#130E00', color:'#FFD21E', shadow:'rgba(255,210,30,0.4)' },
-  { name:'NumPy',      icon:'https://cdn.simpleicons.org/numpy/013243',       bg:'#000A10', color:'#1E9BBB', shadow:'rgba(1,50,67,0.5)' },
-  { name:'Pandas',     icon:'https://cdn.simpleicons.org/pandas/150458',      bg:'#050012', color:'#6040CC', shadow:'rgba(21,4,88,0.5)' },
-  { name:'PostgreSQL', icon:'https://cdn.simpleicons.org/postgresql/4169E1',  bg:'#040A18', color:'#6080F0', shadow:'rgba(65,105,225,0.5)' },
-  { name:'MongoDB',    icon:'https://cdn.simpleicons.org/mongodb/47A248',     bg:'#031003', color:'#57C257', shadow:'rgba(71,162,72,0.5)' },
-  { name:'Redis',      icon:'https://cdn.simpleicons.org/redis/DC382D',       bg:'#150200', color:'#FF4444', shadow:'rgba(220,56,45,0.5)' },
-  { name:'MySQL',      icon:'https://cdn.simpleicons.org/mysql/4479A1',       bg:'#040B14', color:'#5599CC', shadow:'rgba(68,121,161,0.5)' },
-  { name:'Firebase',   icon:'https://cdn.simpleicons.org/firebase/FFCA28',    bg:'#120C00', color:'#FFCA28', shadow:'rgba(255,202,40,0.4)' },
-  { name:'Kafka',      icon:'https://cdn.simpleicons.org/apachekafka/FFFFFF', bg:'#0A0A0A', color:'#888888', shadow:'rgba(140,140,140,0.3)' },
-  { name:'Celery',     icon:'https://cdn.simpleicons.org/celery/A9CC54',      bg:'#090D02', color:'#A9CC54', shadow:'rgba(169,204,84,0.4)' },
-  { name:'Docker',     icon:'https://cdn.simpleicons.org/docker/2496ED',      bg:'#00070E', color:'#2496ED', shadow:'rgba(36,150,237,0.5)' },
-  { name:'Kubernetes', icon:'https://cdn.simpleicons.org/kubernetes/326CE5',  bg:'#040A18', color:'#4488FF', shadow:'rgba(50,108,229,0.5)' },
-  { name:'AWS',        icon:'https://cdn.simpleicons.org/amazonaws/FF9900',   bg:'#130900', color:'#FF9900', shadow:'rgba(255,153,0,0.5)' },
-  { name:'GCP',        icon:'https://cdn.simpleicons.org/googlecloud/4285F4', bg:'#040A18', color:'#5599FF', shadow:'rgba(66,133,244,0.5)' },
-  { name:'Git',        icon:'https://cdn.simpleicons.org/git/F05032',         bg:'#130200', color:'#F05032', shadow:'rgba(240,80,50,0.5)' },
-  { name:'Linux',      icon:'https://cdn.simpleicons.org/linux/FCC624',       bg:'#120F00', color:'#FCC624', shadow:'rgba(252,198,36,0.4)' },
-  { name:'GitLab CI',  icon:'https://cdn.simpleicons.org/gitlab/FC6D26',      bg:'#130600', color:'#FC6D26', shadow:'rgba(252,109,38,0.5)' },
-  { name:'Grafana',    icon:'https://cdn.simpleicons.org/grafana/F46800',     bg:'#120600', color:'#F46800', shadow:'rgba(244,104,0,0.5)' },
-  { name:'Figma',      icon:'https://cdn.simpleicons.org/figma/F24E1E',       bg:'#130200', color:'#F24E1E', shadow:'rgba(242,78,30,0.5)' },
+  { name:'C', icon:'https://cdn.simpleicons.org/c/A8B9CC', bg:'#0A0C10', color:'#A8B9CC', shadow:'rgba(168,185,204,0.5)' },
+  { name:'C++', icon:'https://cdn.simpleicons.org/cplusplus/00599C', bg:'#040D14', color:'#1A88D4', shadow:'rgba(0,89,156,0.5)' },
+  { name:'Python', icon:'https://cdn.simpleicons.org/python/3776AB', bg:'#060A14', color:'#4B9CD3', shadow:'rgba(55,118,171,0.5)' },
+  { name:'Java', icon:'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg', bg:'#140900', color:'#E76F00', shadow:'rgba(231,111,0,0.5)' },
+  { name:'Go', icon:'https://cdn.simpleicons.org/go/00ADD8', bg:'#00090E', color:'#00C8F0', shadow:'rgba(0,173,216,0.5)' },
+  { name:'JavaScript', icon:'https://cdn.simpleicons.org/javascript/F7DF1E', bg:'#141200', color:'#F7DF1E', shadow:'rgba(247,223,30,0.4)' },
+  { name:'TypeScript', icon:'https://cdn.simpleicons.org/typescript/3178C6', bg:'#050B14', color:'#3D8EE8', shadow:'rgba(49,120,198,0.5)' },
+  { name:'SQL', icon:'https://cdn.simpleicons.org/sqlite/003B57', bg:'#000810', color:'#4DA1D6', shadow:'rgba(77,161,214,0.5)' },
+  { name:'C#', icon:'https://cdn.simpleicons.org/csharp/239120', bg:'#041008', color:'#2EBD2A', shadow:'rgba(35,145,32,0.5)' },
+  { name:'HTML5', icon:'https://cdn.simpleicons.org/html5/E34F26', bg:'#140500', color:'#E34F26', shadow:'rgba(227,79,38,0.5)' },
+  { name:'CSS3', icon:'https://cdn.simpleicons.org/css3/1572B6', bg:'#000A14', color:'#1572B6', shadow:'rgba(21,114,182,0.5)' },
+  { name:'LaTeX', icon:'https://cdn.simpleicons.org/latex/008080', bg:'#001010', color:'#008080', shadow:'rgba(0,128,128,0.5)' },
+  { name:'Objective-C', icon:'https://cdn.simpleicons.org/apple/FFFFFF', bg:'#101010', color:'#FFFFFF', shadow:'rgba(255,255,255,0.3)' },
+  { name:'Markdown', icon:'https://cdn.simpleicons.org/markdown/FFFFFF', bg:'#101010', color:'#FFFFFF', shadow:'rgba(255,255,255,0.3)' },
+  { name:'React', icon:'https://cdn.simpleicons.org/react/61DAFB', bg:'#001418', color:'#61DAFB', shadow:'rgba(97,218,251,0.4)' },
+  { name:'Next JS', icon:'https://cdn.simpleicons.org/nextdotjs/FFFFFF', bg:'#0E0E0E', color:'#CCCCCC', shadow:'rgba(200,200,200,0.25)' },
+  { name:'NodeJS', icon:'https://cdn.simpleicons.org/nodedotjs/339933', bg:'#031003', color:'#44BB44', shadow:'rgba(51,153,51,0.5)' },
+  { name:'Flask', icon:'https://cdn.simpleicons.org/flask/FFFFFF', bg:'#0D0D0D', color:'#AAAAAA', shadow:'rgba(180,180,180,0.2)' },
+  { name:'FastAPI', icon:'https://cdn.simpleicons.org/fastapi/009688', bg:'#001210', color:'#00BFB0', shadow:'rgba(0,150,136,0.5)' },
+  { name:'Spring Boot', icon:'https://cdn.simpleicons.org/springboot/6DB33F', bg:'#061000', color:'#7DCF4A', shadow:'rgba(109,179,63,0.5)' },
+  { name:'Django', icon:'https://cdn.simpleicons.org/django/44B78B', bg:'#021009', color:'#44B78B', shadow:'rgba(43,169,119,0.5)' },
+  { name:'TailwindCSS', icon:'https://cdn.simpleicons.org/tailwindcss/06B6D4', bg:'#001014', color:'#06B6D4', shadow:'rgba(6,182,212,0.5)' },
+  { name:'Bootstrap', icon:'https://cdn.simpleicons.org/bootstrap/7952B3', bg:'#0E0514', color:'#7952B3', shadow:'rgba(121,82,179,0.5)' },
+  { name:'REST API', icon:'https://cdn.simpleicons.org/json/FFFFFF', bg:'#101010', color:'#FFFFFF', shadow:'rgba(255,255,255,0.3)' },
+  { name:'JWT', icon:'https://cdn.simpleicons.org/jsonwebtokens/FFFFFF', bg:'#101010', color:'#FF0000', shadow:'rgba(255,0,0,0.4)' },
+  { name:'NPM', icon:'https://cdn.simpleicons.org/npm/CB3837', bg:'#140303', color:'#CB3837', shadow:'rgba(203,56,55,0.5)' },
+  { name:'PyTorch', icon:'https://cdn.simpleicons.org/pytorch/EE4C2C', bg:'#150400', color:'#FF5533', shadow:'rgba(238,76,44,0.5)' },
+  { name:'TensorFlow', icon:'https://cdn.simpleicons.org/tensorflow/FF6F00', bg:'#140700', color:'#FF9900', shadow:'rgba(255,111,0,0.5)' },
+  { name:'scikit-learn', icon:'https://cdn.simpleicons.org/scikitlearn/F7931E', bg:'#130800', color:'#F7931E', shadow:'rgba(247,147,30,0.5)' },
+  { name:'SpaCy', icon:'https://cdn.simpleicons.org/spacy/09A3D5', bg:'#001014', color:'#09A3D5', shadow:'rgba(9,163,213,0.5)' },
+  { name:'OpenCV', icon:'https://cdn.simpleicons.org/opencv/5C3EE8', bg:'#080414', color:'#7055FF', shadow:'rgba(92,62,232,0.5)' },
+  { name:'NumPy', icon:'https://cdn.simpleicons.org/numpy/013243', bg:'#000A10', color:'#1E9BBB', shadow:'rgba(1,50,67,0.5)' },
+  { name:'Pandas', icon:'https://cdn.simpleicons.org/pandas/150458', bg:'#050012', color:'#6040CC', shadow:'rgba(21,4,88,0.5)' },
+  { name:'Scipy', icon:'https://cdn.simpleicons.org/scipy/8CAAE6', bg:'#0A101A', color:'#8CAAE6', shadow:'rgba(140,170,230,0.5)' },
+  { name:'Matplotlib', icon:'https://cdn.simpleicons.org/plotly/3F4F75', bg:'#050A10', color:'#3F4F75', shadow:'rgba(63,79,117,0.5)' },
+  { name:'HuggingFace', icon:'https://cdn.simpleicons.org/huggingface/FFD21E', bg:'#130E00', color:'#FFD21E', shadow:'rgba(255,210,30,0.4)' },
+  { name:'DinoV2', icon:'https://cdn.simpleicons.org/meta/0467DF', bg:'#000A14', color:'#0467DF', shadow:'rgba(4,103,223,0.5)' },
+  { name:'MySQL', icon:'https://cdn.simpleicons.org/mysql/4479A1', bg:'#040B14', color:'#5599CC', shadow:'rgba(68,121,161,0.5)' },
+  { name:'PostgreSQL', icon:'https://cdn.simpleicons.org/postgresql/4169E1', bg:'#040A18', color:'#6080F0', shadow:'rgba(65,105,225,0.5)' },
+  { name:'MongoDB', icon:'https://cdn.simpleicons.org/mongodb/47A248', bg:'#031003', color:'#57C257', shadow:'rgba(71,162,72,0.5)' },
+  { name:'Redis', icon:'https://cdn.simpleicons.org/redis/DC382D', bg:'#150200', color:'#FF4444', shadow:'rgba(220,56,45,0.5)' },
+  { name:'Firebase', icon:'https://cdn.simpleicons.org/firebase/FFCA28', bg:'#120C00', color:'#FFCA28', shadow:'rgba(255,202,40,0.4)' },
+  { name:'Apache Kafka', icon:'https://cdn.simpleicons.org/apachekafka/FFFFFF', bg:'#0A0A0A', color:'#888888', shadow:'rgba(140,140,140,0.3)' },
+  { name:'Celery', icon:'https://cdn.simpleicons.org/celery/A9CC54', bg:'#090D02', color:'#A9CC54', shadow:'rgba(169,204,84,0.4)' },
+  { name:'FFmpeg', icon:'https://cdn.simpleicons.org/ffmpeg/007808', bg:'#020D02', color:'#007808', shadow:'rgba(0,120,8,0.5)' },
+  { name:'NGINX', icon:'https://cdn.simpleicons.org/nginx/009639', bg:'#001006', color:'#009639', shadow:'rgba(0,150,57,0.5)' },
+  { name:'AWS', icon:'https://cdn.simpleicons.org/amazonaws/FF9900', bg:'#130900', color:'#FF9900', shadow:'rgba(255,153,0,0.5)' },
+  { name:'GCP', icon:'https://cdn.simpleicons.org/googlecloud/4285F4', bg:'#040A18', color:'#5599FF', shadow:'rgba(66,133,244,0.5)' },
+  { name:'Docker', icon:'https://cdn.simpleicons.org/docker/2496ED', bg:'#00070E', color:'#2496ED', shadow:'rgba(36,150,237,0.5)' },
+  { name:'Kubernetes', icon:'https://cdn.simpleicons.org/kubernetes/326CE5', bg:'#040A18', color:'#4488FF', shadow:'rgba(50,108,229,0.5)' },
+  { name:'Linux', icon:'https://cdn.simpleicons.org/linux/FCC624', bg:'#120F00', color:'#FCC624', shadow:'rgba(252,198,36,0.4)' },
+  { name:'Vercel', icon:'https://cdn.simpleicons.org/vercel/FFFFFF', bg:'#101010', color:'#FFFFFF', shadow:'rgba(255,255,255,0.4)' },
+  { name:'Render', icon:'https://cdn.simpleicons.org/render/46E3B7', bg:'#051410', color:'#46E3B7', shadow:'rgba(70,227,183,0.5)' },
+  { name:'GitLab CI', icon:'https://cdn.simpleicons.org/gitlab/FC6D26', bg:'#130600', color:'#FC6D26', shadow:'rgba(252,109,38,0.5)' },
+  { name:'Git', icon:'https://cdn.simpleicons.org/git/F05032', bg:'#130200', color:'#F05032', shadow:'rgba(240,80,50,0.5)' },
+  { name:'GitHub', icon:'https://cdn.simpleicons.org/github/FFFFFF', bg:'#101010', color:'#FFFFFF', shadow:'rgba(255,255,255,0.4)' },
+  { name:'Postman', icon:'https://cdn.simpleicons.org/postman/FF6C37', bg:'#140602', color:'#FF6C37', shadow:'rgba(255,108,55,0.5)' },
+  { name:'Grafana', icon:'https://cdn.simpleicons.org/grafana/F46800', bg:'#120600', color:'#F46800', shadow:'rgba(244,104,0,0.5)' },
+  { name:'Notion', icon:'https://cdn.simpleicons.org/notion/FFFFFF', bg:'#101010', color:'#FFFFFF', shadow:'rgba(255,255,255,0.4)' },
+  { name:'Figma', icon:'https://cdn.simpleicons.org/figma/F24E1E', bg:'#130200', color:'#F24E1E', shadow:'rgba(242,78,30,0.5)' },
+  { name:'Canva', icon:'https://cdn.simpleicons.org/canva/00C4CC', bg:'#001414', color:'#00C4CC', shadow:'rgba(0,196,204,0.5)' },
+  { name:'Prezi', icon:'https://cdn.simpleicons.org/prezi/318CE7', bg:'#040E18', color:'#318CE7', shadow:'rgba(49,140,231,0.5)' }
 ];
 
 const grid = document.getElementById('techGrid');
@@ -965,7 +959,6 @@ TECHS.forEach(tech => {
   pill.innerHTML = `<img src="${tech.icon}" alt="${tech.name}" loading="lazy" onerror="this.style.display='none'"/>${tech.name}`;
 
   pill.addEventListener('mouseenter', () => {
-    // Calculates the exact center of the hovered pill
     const rect = pill.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
@@ -973,7 +966,6 @@ TECHS.forEach(tech => {
     document.body.style.transition = 'background 0.8s cubic-bezier(0.23,1,0.32,1)';
     bgOverlay.style.opacity = '1';
     
-    // 🔥 UPDATED: Massive 1500px span, highly intense glowing core
     bgOverlay.style.background = `radial-gradient(circle 800px at ${cx}px ${cy}px, ${tech.color}CC 0%, ${tech.color}66 35%, ${tech.color}1A 70%, transparent 100%)`;
   });
 
@@ -984,7 +976,6 @@ TECHS.forEach(tech => {
   
   grid.appendChild(pill);
 });
-
 
 /* ═══════════════════════════════════════════════════
    SCROLL REVEAL + SECTION ANIMATIONS
