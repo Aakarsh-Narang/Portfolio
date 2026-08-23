@@ -33,7 +33,6 @@
     position: relative;
   }
   body.loading { overflow: hidden; height: 100vh; }
-
   /* ─── SCI-FI TEAR CANVAS ─── */
   #swarm-canvas {
     position: fixed; inset: 0;
@@ -41,7 +40,15 @@
     z-index: 9995;
     mix-blend-mode: screen;
   }
-
+  /* ─── DEEP SPACE STARFIELD ─── */
+  #stars-canvas {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse 120% 80% at 50% -10%, rgba(108,99,255,0.06) 0%, transparent 55%),
+                radial-gradient(ellipse 100% 70% at 100% 110%, rgba(0,245,255,0.04) 0%, transparent 50%),
+                var(--bg);
+  }
   /* ─── CURSOR CORE ─── */
   #cursor-dot {
     position: fixed; width: 6px; height: 6px; background: #fff;
@@ -59,7 +66,6 @@
   }
   body.cursor-hover #cursor-dot { width: 10px; height: 10px; }
   body.cursor-hover #cursor-ring { width: 50px; height: 50px; border-color: #fff; }
-
   /* ─── PRELOADER ─── */
   #preloader {
     position: fixed; inset: 0; background: #050508;
@@ -137,25 +143,21 @@
     background: #00F5FF; box-shadow: 0 0 14px #00F5FF, 0 0 28px rgba(0,245,255,0.5);
   }
   .loader-status { font-size: 0.85rem; color: rgba(108,99,255,0.45); letter-spacing: 0.1em; height: 20px; }
-
   /* ─── SCROLLBAR ─── */
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-
   /* ─── NOISE ─── */
   body::before {
     content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.3;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   }
-
   /* ─── TECH BG OVERLAY (Centered on Logo) ─── */
   #tech-bg-overlay {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
     transition: background 0.6s var(--ease), opacity 0.6s var(--ease);
     opacity: 0;
   }
-
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -175,7 +177,6 @@
   .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.3s var(--ease); }
   .nav-links a:hover { color: var(--text); }
   .nav-links a:hover::after { width: 100%; }
-
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh; display: flex; flex-direction: column;
@@ -202,7 +203,6 @@
     animation: orbFloat 10s ease-in-out infinite reverse;
   }
   @keyframes orbFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-30px) scale(1.05); } }
-
   .hero-eyebrow {
     font-family: 'Space Mono', monospace; font-size: 0.78rem;
     letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase;
@@ -261,7 +261,6 @@
     z-index: 1; 
     pointer-events: none;
   }
-
   @media (max-width: 768px) {
     .hero-planet {
       right: -20%;
@@ -270,7 +269,6 @@
       opacity: 0.3;
     }
   }
-
   .hero-stats {
     position: absolute; right: 60px; bottom: 80px;
     display: flex; flex-direction: column; gap: 24px;
@@ -290,7 +288,6 @@
   .scroll-text { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
   @keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
   @keyframes fadeLeft { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
-
   /* ─── SECTION BASE ─── */
   section { padding: 100px 60px; position: relative; z-index: 2; }
   .section-label {
@@ -303,7 +300,6 @@
     font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 700; letter-spacing: -0.02em; margin-bottom: 60px; line-height: 1.1;
   }
-
   /* ══════════════════════════════
      SCROLL ANIMATIONS
   ══════════════════════════════ */
@@ -320,33 +316,27 @@
     80%  { clip-path: inset(0 0 0 0); transform: translateX(1px); }
     100% { clip-path: inset(0 0 0 0); transform: translateX(0); opacity: 1; }
   }
-
   .circuit-wrap { position: relative; overflow: visible; }
   .circuit-svg { position: absolute; top: 0; left: -60px; width: 40px; height: 100%; overflow: visible; pointer-events: none; }
   .circuit-path { fill: none; stroke: var(--accent); stroke-width: 1; stroke-dasharray: 1100; stroke-dashoffset: 1100; opacity: 0.35; transition: stroke-dashoffset 1.2s var(--ease), opacity 0.4s; }
   .circuit-wrap.visible .circuit-path { stroke-dashoffset: 0; opacity: 0.35; }
   .circuit-dot { fill: var(--accent); opacity: 0; transition: opacity 0.3s 0.9s; }
   .circuit-wrap.visible .circuit-dot { opacity: 0.6; }
-
   .scan-card { position: relative; overflow: hidden; }
   .scan-card::after { content: ''; position: absolute; left: 0; top: -100%; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0; pointer-events: none; transition: none; }
   .scan-card.scan-active::after { animation: scanLine 0.8s var(--ease) forwards; }
   @keyframes scanLine { 0% { top: -2px; opacity: 0.8; } 100% { top: 100%; opacity: 0; } }
-
   .stat-counter { font-variant-numeric: tabular-nums; }
   .reveal-left  { opacity: 0; transform: translateX(-50px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal-right { opacity: 0; transform: translateX(50px);  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
   .reveal-scale { opacity: 0; transform: scale(0.88); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
   .reveal-scale.visible { opacity: 1; transform: scale(1); }
-
   .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.18s; }
   .d3 { transition-delay: 0.26s; } .d4 { transition-delay: 0.34s; }
   .d5 { transition-delay: 0.42s; } .d6 { transition-delay: 0.5s; }
-
   .trace-line { width: 0%; height: 1px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0.3; transition: width 1.4s var(--ease); margin-bottom: 60px; }
   .trace-line.visible { width: 100%; }
-
   /* ─── TECH STACK ─── */
   #tech { background: transparent; }
   .tech-grid { display: flex; flex-wrap: wrap; gap: 12px; max-width: 100%; width: 100%; }
@@ -369,7 +359,6 @@
   .tech-pill:hover::before { opacity: 1; }
   .tech-pill img { width: 24px; height: 24px; object-fit: contain; filter: brightness(0.85); transition: filter 0.3s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
   .tech-pill:hover img { filter: brightness(1.3); transform: scale(1.3) rotate(5deg); }
-
   /* ─── ABOUT ─── */
   #about { background: linear-gradient(180deg, transparent 0%, var(--bg-card) 100%); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; max-width: 1200px; }
@@ -386,7 +375,6 @@
   .highlight-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
   .highlight-content h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
   .highlight-content p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-
   /* ─── EXPERIENCE ─── */
   #experience { background: transparent; }
   .exp-timeline { max-width: 800px; position: relative; }
@@ -404,9 +392,8 @@
   .exp-desc li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
   .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
   .exp-tag { padding: 4px 10px; background: rgba(0,245,255,0.05); border: 1px solid rgba(0,245,255,0.12); border-radius: 4px; font-size: 0.7rem; color: var(--cyan); font-family: 'Space Mono', monospace; }
-
   /* ─── PROJECTS ─── */
-  #projects { background: var(--bg-card); }
+  #projects { background: rgba(16,16,26,0.82); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
   .project-card {
     background: var(--bg-card2); border: 1px solid var(--border); border-radius: 12px;
@@ -430,9 +417,8 @@
   .project-link { font-size: 0.78rem; color: var(--muted); text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-weight: 500; transition: color 0.3s; display: flex; align-items: center; gap: 6px; cursor: none; }
   .project-link:hover { color: var(--cyan); }
   .project-link svg { width: 14px; height: 14px; }
-
   /* ─── ACHIEVEMENTS ─── */
-  #achievements { background: var(--bg-card); }
+  #achievements { background: rgba(16,16,26,0.82); }
   .achievements-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .achievement-card {
     padding: 28px; background: var(--bg-card2); border: 1px solid var(--border);
@@ -444,7 +430,6 @@
   .achievement-title { font-family: 'Space Grotesk', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; line-height: 1.3; }
   .achievement-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
   .achievement-desc strong { color: var(--accent); }
-
   /* ─── CONTACT ─── */
   #contact { background: transparent; text-align: center; padding: 120px 60px; }
   .contact-inner { max-width: 600px; margin: 0 auto; }
@@ -456,12 +441,10 @@
   .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
   .contact-link { padding: 12px 28px; background: transparent; border: 1px solid var(--border); border-radius: 100px; color: var(--text); text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.84rem; font-weight: 500; transition: all 0.3s var(--ease); display: flex; align-items: center; gap: 8px; cursor: none; }
   .contact-link:hover { background: var(--accent); border-color: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(108,99,255,0.3); }
-
   /* ─── FOOTER ─── */
   footer { padding: 30px 60px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--bg); z-index: 2; position: relative; }
   .footer-text { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.05em; }
   .footer-text span { color: var(--accent); }
-
   @media (max-width: 768px) {
     nav { padding: 16px 24px; }
     .nav-links { display: none; }
@@ -477,6 +460,9 @@
 </style>
 </head>
 <body class="loading">
+
+<!-- DEEP SPACE STARFIELD -->
+<canvas id="stars-canvas"></canvas>
 
 <!-- SCI-FI TEAR PARTICLE CANVAS -->
 <canvas id="swarm-canvas"></canvas>
@@ -1292,6 +1278,121 @@ TECHS.forEach(tech => {
     renderer.render(scene, camera);
   }
   animate();
+})();
+
+/* ═══════════════════════════════════════════════════
+   DEEP SPACE STARFIELD
+═══════════════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let W, H, DPR;
+  let stars = [];
+  let shootingStars = [];
+
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    buildStars();
+  }
+
+  function buildStars() {
+    stars = [];
+    // Three depth layers: far/dim/small, mid, near/bright/larger
+    const layers = [
+      { count: Math.floor(W * H / 9000), size: [0.4, 1.0], speed: 0.02, alpha: [0.2, 0.5], color: '255,255,255' },
+      { count: Math.floor(W * H / 16000), size: [0.8, 1.6], speed: 0.05, alpha: [0.35, 0.75], color: '220,225,255' },
+      { count: Math.floor(W * H / 30000), size: [1.2, 2.2], speed: 0.09, alpha: [0.5, 1.0], color: '190,220,255' }
+    ];
+    layers.forEach((layer, li) => {
+      for (let i = 0; i < layer.count; i++) {
+        stars.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: layer.size[0] + Math.random() * (layer.size[1] - layer.size[0]),
+          baseAlpha: layer.alpha[0] + Math.random() * (layer.alpha[1] - layer.alpha[0]),
+          twinkleSpeed: 0.4 + Math.random() * 1.2,
+          phase: Math.random() * Math.PI * 2,
+          drift: layer.speed,
+          color: layer.color,
+          layer: li
+        });
+      }
+    });
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  let scrollY = window.scrollY;
+  window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+  function maybeSpawnShootingStar() {
+    if (Math.random() < 0.0025 && shootingStars.length < 2) {
+      const startX = Math.random() * W * 0.6 + W * 0.2;
+      shootingStars.push({
+        x: startX,
+        y: -20,
+        vx: -2.4 - Math.random() * 1.4,
+        vy: 3.2 + Math.random() * 1.6,
+        life: 1,
+        len: 70 + Math.random() * 60
+      });
+    }
+  }
+
+  let t = 0;
+  function drawStars() {
+    t += 0.016;
+    ctx.clearRect(0, 0, W, H);
+
+    stars.forEach(s => {
+      const twinkle = 0.55 + 0.45 * Math.sin(t * s.twinkleSpeed + s.phase);
+      const parallaxY = (scrollY * s.drift) % H;
+      let y = s.y - parallaxY;
+      if (y < -5) y += H + 10;
+      if (y > H + 5) y -= H + 10;
+
+      ctx.beginPath();
+      ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${s.color}, ${(s.baseAlpha * twinkle).toFixed(3)})`;
+      ctx.fill();
+
+      if (s.layer === 2 && twinkle > 0.9) {
+        ctx.beginPath();
+        ctx.arc(s.x, y, s.r * 2.4, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${s.color}, ${(0.08 * twinkle).toFixed(3)})`;
+        ctx.fill();
+      }
+    });
+
+    maybeSpawnShootingStar();
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const c = shootingStars[i];
+      c.x += c.vx; c.y += c.vy; c.life -= 0.012;
+      if (c.life <= 0 || c.y > H + 50) { shootingStars.splice(i, 1); continue; }
+      const grad = ctx.createLinearGradient(c.x, c.y, c.x - c.vx * c.len / 4, c.y - c.vy * c.len / 4);
+      grad.addColorStop(0, `rgba(255,255,255,${c.life})`);
+      grad.addColorStop(1, 'rgba(108,99,255,0)');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(c.x, c.y);
+      ctx.lineTo(c.x - c.vx * c.len / 4, c.y - c.vy * c.len / 4);
+      ctx.stroke();
+    }
+
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
 })();
 </script>
 </body>
