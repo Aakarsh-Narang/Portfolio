@@ -584,7 +584,7 @@
       <circle class="circuit-dot" cx="20" cy="520" r="3"/>
     </svg>
     <div class="exp-item reveal d1">
-      <div class="exp-meta"><span class="exp-company">AlgoUniversity</span><span class="exp-badge">YC S21</span></div>
+      <div class="exp-meta"><span class="exp-company">AlgoUniversity</span><span class="exp-badge">Y Combinator S21</span></div>
       <div class="exp-role">Software Development Engineer Intern</div>
       <div class="exp-date">May 2026 — Jul 2026 · Hyderabad (Hybrid)</div>
       <ul class="exp-desc">
@@ -594,7 +594,7 @@
         <li>Implemented <strong>AES-128 encryption</strong> on video segments to prevent data piracy and unauthorized redistribution, paired with <strong>concurrent session limits</strong> per user account to block credential and account sharing.</li>
         <li>Hardened the system for production scale by architecting security-focused <strong>Role-Based Access Control</strong> and rate limiting behind an Nginx reverse proxy, alongside fault-tolerant retry logic with job idempotency and worker synchronization, guaranteeing <strong>zero data loss</strong> on failure while enabling clean horizontal scaling.</li>
       </ul>
-      <div class="exp-tags"><span class="exp-tag">System Design</span><span class="exp-tag">Celery</span><span class="exp-tag">Redis</span><span class="exp-tag">FFmpeg</span><span class="exp-tag">Nginx</span><span class="exp-tag">Amazon AWS</span><span class="exp-tag">AES-128</span><span class="exp-tag">RBAC</span><span class="exp-tag">Python</span><span class="exp-tag">Java</span><span class="exp-tag">Django</span><span class="exp-tag">Monolithic</span></div>
+      <div class="exp-tags"><span class="exp-tag">System Design</span><span class="exp-tag">Celery</span><span class="exp-tag">Multithreading</span><span class="exp-tag">FFmpeg</span><span class="exp-tag">Nginx</span><span class="exp-tag">Amazon AWS</span><span class="exp-tag">AES-128</span><span class="exp-tag">RBAC</span><span class="exp-tag">Python</span><span class="exp-tag">Java</span><span class="exp-tag">Django</span><span class="exp-tag">Monolithic</span></div>
     </div>
     <div class="exp-item reveal d2">
       <div class="exp-meta"><span class="exp-company">Sangillence</span><span class="exp-badge">EdTech Startup</span></div>
@@ -833,7 +833,7 @@
   }, 40);
 
   function tick() {
-    p += 0.8 + Math.random() * 1.5; 
+    p += 1.8 + Math.random() * 2.4; 
     if (p >= 100) p = 100;
     
     if (fill) fill.style.width = p + '%';
@@ -846,16 +846,16 @@
     }
     
     if (p < 100) {
-      setTimeout(tick, 60); 
+      setTimeout(tick, 50); 
     } else {
       clearInterval(clk);
       setTimeout(() => {
         if(pre) pre.classList.add('hidden');
         document.body.classList.remove('loading');
-      }, 600);
+      }, 500);
     }
   }
-  setTimeout(tick, 350);
+  setTimeout(tick, 200);
 })();
 
 /* ═══════════════════════════════════════════════════
@@ -883,35 +883,6 @@
     const x = e.clientX;
     const y = e.clientY;
 
-    if (lastX !== -999) {
-      const dx = x - lastX;
-      const dy = y - lastY;
-      const dist = Math.hypot(dx, dy);
-
-      const steps = Math.min(Math.ceil(dist / 1.5), 100); 
-
-      for (let i = 0; i < steps; i++) {
-        for (let j = 0; j < 4; j++) { 
-          const t = i / steps;
-          const px = lastX + dx * t;
-          const py = lastY + dy * t;
-
-          const angle = Math.atan2(dy, dx) + (Math.PI / 2) * (Math.random() > 0.5 ? 1 : -1);
-          const spread = Math.random() * (speed > 15 ? 25 : 8);
-
-          particles.push({
-            x: px + Math.cos(angle) * spread,
-            y: py + Math.sin(angle) * spread,
-            vx: (Math.random() - 0.5) * 1.8,
-            vy: (Math.random() - 0.5) * 1.8,
-            life: 1,
-            decay: Math.random() * 0.02 + 0.005, 
-            size: Math.random() * 1.2 + 0.3, 
-            colorHue: hue + (Math.random() - 0.5) * 40
-          });
-        }
-      }
-    }
     lastX = x;
     lastY = y;
   });
